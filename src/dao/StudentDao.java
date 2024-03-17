@@ -72,27 +72,29 @@ public class StudentDao implements StudentDaoInterface{
 
     @Override
     public void showAllStudent() {
-        try{
-            Connection con=DBConnection.createConnection();
-            String query="select * from student_details";
-            Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery(query);
-            while(rs.next()){
-                System.out.println("Roll Number: "+rs.getInt(1)+"\n" +
-                        "Name: "+rs.getString(2)+"\n" +
-                        "College name: "+rs.getString(3)+"\n" +
-                        "City: "+rs.getString(4)+"\n" +
-                        "Percentage: "+rs.getDouble(5));
-                System.out.println("----------------------------------");
-
+        try {
+            Connection con = DBConnection.createConnection();
+            String query = "select * from student_details";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
+            System.out.printf("| %-12s | %-20s | %-30s | %-15s | %-10s |\n", "Roll Number", "Name", "College Name", "City", "Percentage");
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
+            while (rs.next()) {
+                System.out.printf("| %-12d | %-20s | %-30s | %-15s | %-10.2f |\n",
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDouble(5));
             }
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
+
 
     @Override
     public boolean showStudentById(int roll) {
