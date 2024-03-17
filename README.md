@@ -1,4 +1,4 @@
-# Student Management System
+# Student Management System in Java with MySQL
 
 This is a terminal-based application for managing student records using MySQL as the database with JDBC connection.
 
